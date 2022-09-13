@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Model\Citation;
+
 interface ICitationRepository
 {
-    public function add();
+    public function add(Citation $citation);
 
     //public function remove();
 

@@ -9,19 +9,22 @@ class Citation
     private string $citation;
 
 
-    public function __construct(string $auteur, string $citation){
+    public function __construct(string $auteur, string $citation)
+
     {
         $this->auteur = $auteur;
         $this->citation = $citation;
     }
 
 
-    public function getId(): int
+    public
+    function getId(): int
     {
         return $this->id;
     }
 
-    public function getAuteur(): string
+    public
+    function getAuteur(): string
     {
         return $this->auteur;
     }
@@ -30,4 +33,10 @@ class Citation
     {
         return $this->citation;
     }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 }

@@ -24,12 +24,12 @@ try {
     $router = new Router($_GET['url']);
 
     $router->get('/', function (){
-        (new HomeController)->invoke();
+        echo (new HomeController)->invoke();
     });
 
-    $router->post('/add', function (){
-        (new HomeController)->add();
-    });
+//    $router->post('/add', function (){
+//        (new HomeController)->add();
+//    });
 
     $router->run();
 } catch (Exception $e) {

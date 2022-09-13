@@ -11,8 +11,13 @@ class CitationRepository extends Database implements ICitationRepository
 {
 
 
-    public function add()
+    public function add(Citation $citation)
     {
+        $stmt = $this->db->prepare("INSERT INTO citation (auteur, citation) VALUES (:auteur, :citation)");
+        $stmt->bindValue(':auteur', $citation->getAuteur());
+        $stmt->bindValue(':citation', $citation->getCitation());
+        $stmt->execute();
+        $stmt = null;
     }
 
 
@@ -26,8 +31,8 @@ class CitationRepository extends Database implements ICitationRepository
         $stmt = null;
         $citations = [];
         foreach ($arr as $citation) {
-            $p = new Citation($citation[''], $citation['']);
-            $p->setId($citation['']);
+            $p = new Citation($citation['auteur'], $citation['citation']);
+            $p->setId($citation['id']);
             $citations[] = $p;
         }
         return $citations;
