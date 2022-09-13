@@ -1,4 +1,5 @@
 <?php
+
 //nom du site
 const SITE_NAME = 'Rencontres sportives';
 
