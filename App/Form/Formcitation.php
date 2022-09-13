@@ -14,10 +14,10 @@ $form->debutForm()
 $loginForm = $form->create();
 echo $loginForm;
 
-if (Form::validate($_POST, ['titre', 'description'])) {
-    var_dump("ajout d'annonce");
+if (Form::validate($_POST, ['id', 'auteur', 'citation'])) {
+    var_dump("ajout de citation");
 }
 
-if(Form::validate($_POST, ['titre', 'description'])){
-    var_dump("modification d'annonce");
+if(Form::validate($_POST, ['id', 'auteur', 'citation'])){
+    var_dump("modification de citation");
 }
