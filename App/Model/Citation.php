@@ -2,24 +2,21 @@
 
 namespace App\Model;
 
-Class Citation
+class Citation
 {
-
-    private string $id;
+    private int $id;
     private string $auteur;
     private string $citation;
 
 
-    public function __construct(string $id, string $auteur, string $citation);
-
+    public function __construct(string $auteur, string $citation){
     {
-        $this->id = uniqid();
         $this->auteur = $auteur;
         $this->citation = $citation;
     }
 
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
