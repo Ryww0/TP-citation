@@ -1,49 +1,35 @@
 <?php
-include_once 'IRepository.php';
 
-class CitationRepository implements ICitationRepository {
+namespace App\Repository;
 
-    public string $citation;
-    public string $auteur;
+use App\Model\Citation;
+use App\Repository\ICitationRepository;
+use App\Service\Database;
+use PDO;
 
-    public function __construct($value1, $value2) {
-        $this->citation = $value1;
-        $this->auteur = $value2;
-    }
+class CitationRepository extends Database implements ICitationRepository
+{
+
 
     public function add()
     {
-        $request = $this->connection->prepare("INSERT INTO Citation (citation, auteur) VALUES (:value1,:value2)");
-        $request->execute(array(
-            'value1' => $this->citation,
-            'value2' => $this->auteur
-        ));
     }
 
 
     public function findAll()
     {
-        $request = $this->connection->prepare("SELECT * FROM Citation");
-        $response = $db->query($request);
-        $result = $response->fetchAll(PDO::FETCH_ASSOC);
-    }
+        $stmt = $this->db->prepare('SELECT * FROM citation');
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $arr = $stmt->fetchAll();
 
-
-    /*
-    public function remove()
-    {
-        $request = $this->connection->prepare("DELETE FROM TableName WHERE quelquechose = :quelquechose");
-        $request->bindParam(':quelquechose', $this->QuelqueChose);
-        $request->execute();
+        $stmt = null;
+        $citations = [];
+        foreach ($arr as $citation) {
+            $p = new Citation($citation[''], $citation['']);
+            $p->setId($citation['']);
+            $citations[] = $p;
+        }
+        return $citations;
     }
-
-    public function update()
-    {
-        $request = $this->connection->prepare("UPDATE TableName SET quelquechose = :quelquechose WHERE quelquechoseID = :quelquechoseID");
-        $request->execute(array(
-            'quelquechose' => $this->QuelqueChose,
-            'quelquechoseID' => $this->DeuximeQuelqueChose
-        ));
-    }
-    */
 }
