@@ -1,23 +1,19 @@
-<?php 
-include './App/Service/form.php';
+<?php
 
-$form = new Form;
+class FormCitation
+{
+    public static function buildAddCitation()
+    {
+        $form = new Form();
 
-$form->debutForm()
-    ->ajoutLabelFor('email', 'Email')
-    ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
-    ->ajoutLabelFor('password', 'Mot de passe')
-    ->ajoutInput('password', 'password', ['id' => 'password', 'class' => 'form-control'])
-    ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
-    ->finForm();
+        $form->debutForm()
+            ->ajoutLabelFor('auteur', 'auteur')
+            ->ajoutInput('auteur', 'auteur', ['id' => 'auteur', 'class' => 'form-control'])
+            ->ajoutLabelFor('citation', 'citation')
+            ->ajoutInput('citation', 'citation', ['id' => 'citation', 'class' => 'form-control'])
+            ->ajoutBouton('Ajouter une citation', ['class' => 'btn btn-primary'])
+            ->finForm();
 
-$loginForm = $form->create();
-echo $loginForm;
-
-if (Form::validate($_POST, ['id', 'auteur', 'citation'])) {
-    var_dump("ajout de citation");
-}
-
-if(Form::validate($_POST, ['id', 'auteur', 'citation'])){
-    var_dump("modification de citation");
+        return $form;
+    }
 }
