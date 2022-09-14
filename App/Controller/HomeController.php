@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Form\FormCitation;
 use App\Model\Citation;
+use App\Service\Input;
+use App\Service\Redirect;
 use App\Service\View;
 use App\Repository\CitationRepository;
+use App\Validator\Validation;
 
 class HomeController
 {
@@ -31,11 +34,18 @@ class HomeController
 
     public function add()
     {
-        if (isset($_POST) && !empty($_POST)) {
-            $citation = new CitationRepository();
-            $citation->add(new Citation($_POST['auteur'], $_POST['citation']));
-        } else {
-            var_dump('not ok!');
+        if (Input::exists()) {
+            $val = new Validation;
+            $val->name('citation')->value(Input::get('citation'))->required();
+            $val->name('auteur')->value(Input::get('auteur'))->required();
+            if ($val->isSuccess()) {
+                $design = Input::get('citation');
+                $auteur = Input::get('auteur');
+                $citation = new Citation($design, $auteur);
+                $this->citationRepository->add($citation);
+                Redirect::to('/');
+            }
         }
+        Redirect::to('/');
     }
 }

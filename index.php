@@ -15,6 +15,7 @@ Autoloader::$folderList =
         "App/Repository/",
         "App/Service/",
         "App/Form/",
+        "App/Validator/",
     ];
 Autoloader::register();
 
@@ -36,5 +37,3 @@ try {
 } catch (Exception $e) {
     die('Error: ' . $e);
 }
-
-var_dump($_POST);
