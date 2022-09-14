@@ -5,7 +5,7 @@ const SITE_NAME = 'Rencontres sportives';
 
 //App Root
 define("APP_ROOT", dirname(__FILE__, 2));
-const URL_ROOT = '/ConcretExample/';
+const URL_ROOT = '/TP-citation/';
 const URL_SUBFOLDER = '';
 
 //DB Params

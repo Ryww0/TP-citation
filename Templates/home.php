@@ -8,6 +8,9 @@
                         <h3>-- <?php echo $citation->getAuteur() ?> </h3>
                     </div>
                 <?php } ?>
+                    <div class="col-3">
+                        <?= ($formCitation->create()) ?>
+                    </div>
             </div>
         </div>
     </div>

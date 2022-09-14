@@ -14,6 +14,7 @@ Autoloader::$folderList =
         "App/Controller/",
         "App/Repository/",
         "App/Service/",
+        "App/Form/",
     ];
 Autoloader::register();
 
@@ -27,11 +28,13 @@ try {
         echo (new HomeController)->invoke();
     });
 
-//    $router->post('/add', function (){
-//        (new HomeController)->add();
-//    });
+    $router->post('/add', function (){
+        (new HomeController)->add();
+    });
 
     $router->run();
 } catch (Exception $e) {
     die('Error: ' . $e);
 }
+
+var_dump($_POST);

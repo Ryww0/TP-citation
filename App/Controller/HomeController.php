@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\FormCitation;
+use App\Model\Citation;
 use App\Service\View;
 use App\Repository\CitationRepository;
 
@@ -22,17 +24,18 @@ class HomeController
             SITE_NAME . ' - Citation',
             'home.php',
             [
-                'citations' => $this->citationRepository->findAll()
+                'citations' => $this->citationRepository->findAll(),
+                'formCitation' => FormCitation::buildAddCitation()
             ]);
     }
 
     public function add()
     {
-        return $this->render(
-            SITE_NAME . ' - Citation',
-            'home.php',
-            [
-                'citations' => $this->citationRepository->add($_POST[''])
-            ]);
+        if (isset($_POST) && !empty($_POST)) {
+            $citation = new CitationRepository();
+            $citation->add(new Citation($_POST['auteur'], $_POST['citation']));
+        } else {
+            var_dump('not ok!');
+        }
     }
 }
